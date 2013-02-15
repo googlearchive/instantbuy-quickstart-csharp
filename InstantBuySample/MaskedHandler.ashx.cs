@@ -29,7 +29,8 @@ namespace InstantBuySample
 			HttpResponse response = context.Response;
 
 			StreamReader streamReader = new StreamReader(request.InputStream);
-			
+      Console.WriteLine("SHIT");
+
 			String input;
 			String json = "";
 			while((input = streamReader.ReadLine()) != null){
@@ -44,7 +45,7 @@ namespace InstantBuySample
           .Origin(Config.getOrigin ())
           .SigningCertificateFingerprint(new SigningCert(Config.getFingerPrint (), SigningCert.SHA1))
           .PhoneNumberRequired(true)
-          .Pay (new Pay(req.estimatedTotalPrice,req.currencyCode))
+          .Pay (new Pay(Convert.ToString (Convert.ToInt64 (req.estimatedTotalPrice)/1000000),req.currencyCode))
           .Ship (new Ship())
           .Build ();
 
@@ -52,7 +53,7 @@ namespace InstantBuySample
 			mwr.setExp (Convert.ToInt64(DateTime.Now.Subtract(new DateTime(1970,1,1,0,0,0)).TotalSeconds) + 60000L);
 			
 			String mwrJwt = JsonWebToken.Encode(mwr, Config.getMerchantSecret(), JwtHashAlgorithm.HS256); 
-			
+      Console.WriteLine(mwrJwt);
 			response.Write(mwrJwt);
 		}
 	}

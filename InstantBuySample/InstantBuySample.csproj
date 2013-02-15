@@ -10,6 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>InstantBuySample</RootNamespace>
     <AssemblyName>InstantBuySample</AssemblyName>
+    <newfilesearch>OnLoad</newfilesearch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>

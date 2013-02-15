@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantBuySample", "InstantBuySample\InstantBuySample.csproj", "{B4A79CE1-1568-4F9F-A52F-5791B54D6CA8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT", "JWT\JWT.csproj", "{A80B51B8-DDF6-4026-98A4-B59653E50B38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantBuyLibrary", "InstantBuyLib\InstantBuyLibrary.csproj", "{C01290D0-D738-4AF7-BB61-8D99570A4A48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantBuySample", "InstantBuySample\InstantBuySample.csproj", "{B4A79CE1-1568-4F9F-A52F-5791B54D6CA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,5 +41,10 @@ Global
 		$2.inheritsSet = Mono
 		$2.inheritsScope = text/x-csharp
 		$2.scope = text/x-csharp
+		$0.DotNetNamingPolicy = $3
+		$3.DirectoryNamespaceAssociation = None
+		$3.ResourceNamePolicy = FileFormatDefault
+		$0.VersionControlPolicy = $4
+		$4.inheritsSet = Mono
 	EndGlobalSection
 EndGlobal
