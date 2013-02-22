@@ -5,7 +5,8 @@
     <script type="text/javascript"
       src="https://wallet-web.sandbox.google.com/online/v2/merchant/merchant.js"></script>
 		<script>
-   
+    
+    //Information for Masked Wallet request
     var MaskedWalletJson = {
       estimatedTotalPrice : "250.00",
       currencyCode : "USD"
@@ -41,15 +42,19 @@
       }
     };
     
+    //Json representation for Transaction Status Json request.
     var TransactionStatusJson = {};
     
+    //Try to authorize for preauth
     google.wallet.online.authorize({
-      "clientId": "765560632621-l3sif6vo3fpup165vdt5banj89delq3h.apps.googleusercontent.com",
+      "clientId": "Enter your ClientId",
       "callback": function(tokenObj){
         console.log(tokenObj);
       },
     })
     
+    //********Masked Wallet Request related functions********
+    //Handle the Jwt returned from the server and create the Wallet button
     function handleMaskedWalletJwt(data){
       updateStatus("Received Masked Wallet Jwt creating buy button");
       display("jwt=" + data);
@@ -61,18 +66,23 @@
       });
     }
     
+    //Callback for Masked Wallet success
     function maskedWalletSuccess(response){
       updateStatus("Masked Wallet success you can proceed to the Full Wallet Request");
       display("maskedwallet=" + JSON.stringify(response, null, 2));
+      //Add Jwt to Full Wallet Json to generate the Full Wallet request Jwt
       FullWalletJson.jwt = response.jwt;
+      //Enable Full Wallet request button
       document.getElementById("full").disabled = false;
     }
     
+    //Callback for Masked Wallet failure
     function maskedWalletFailure(response){
       updateStatus("Masked Wallet failure check the browser console");
       console.log(response);
     }
     
+    //Callback for Wallet button generation
     function buttonReady(params) {
       if (params.status == "SUCCESS") {
          if (document.readyState === "interactive" || document.readyState === "complete") {
@@ -87,9 +97,12 @@
       }
     }
     
+    //********Full Wallet Request related functions********
+    //Handle the Jwt returned from the server and request the Full Wallet
     function handleFullWalletJwt(data){
       updateStatus("Received Full Wallet Jwt, now requesting Full Wallet");
       display("jwt=" + data);
+      //Request Full Wallet
       google.wallet.online.requestFullWallet({
         jwt : data,
         success : fullWalletSuccess,
@@ -97,6 +110,7 @@
       });
     }
     
+    //Callback for Full Wallet success
     function fullWalletSuccess(response){
       updateStatus("Full Wallet success you can proceed to the Transaction Status Notification");
       display("fullwallet=" + JSON.stringify(response, null, 2));
@@ -104,28 +118,35 @@
       document.getElementById("transaction").disabled = false;
     }
     
+    //Callback for Full Wallet failure
     function fullWalletFailure(response){
       updateStatus("Full Wallet failure check the browser console");
       console.log(response);
     }
     
+    //********Transaction Status Notification related functions********
+    //Handle the Jwt returned fromt he server and notify Wallet
     function handleTransactionStatusJwt(data){
       updateStatus("Received Transaction Status Notification Jwt, now sending to Google");
       display("jwt=" + data);
+      //Notify Wallet
       google.wallet.online.notifyTransactionStatus({
         jwt : data
       });
       updateStatus("Transaction complete");
     }
     
+    //Helper function to display request and responses
     function display(content){
       document.getElementById("output").innerText = content;
     }
-
+    
+    //Helper function to display current status
     function updateStatus(status){
       document.getElementById("status").innerText = status;
     }
     
+    //Initializes the button actions
     function initApp(){
       document.getElementById("masked").addEventListener("click",
         function() {
@@ -143,7 +164,7 @@
           updateStatus("Requesting Transaction Status Notification JWT from server");
         });
     }
-    
+    //Wait for dom before initializing buttons
     if (document.readyState === "interactive" ||
           document.readyState === "complete") {
     initApp();
@@ -166,3 +187,4 @@
     <pre id="output" style="width:600px;word-wrap:break-word;"></pre>
 	</body>
 </html>
+

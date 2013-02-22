@@ -46,7 +46,6 @@ namespace InstantBuySample
           .ClientId (Config.getOauthClientId())
           .MerchantName(Config.getMerchantName())
           .Origin(Config.getOrigin (request))
-          //.SigningCertificateFingerprint(new SigningCert(Config.getFingerPrint (), SigningCert.SHA1))
           .Cart (req.cart)
           .Build ();
 
