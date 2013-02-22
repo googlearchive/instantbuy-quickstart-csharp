@@ -1,0 +1,5 @@
+InstantBuy C# Sample
+
+This sample shows the minimal integration for Google InstantBuy in C#.
+
+There are 2 components the index.html page and http handlers.
