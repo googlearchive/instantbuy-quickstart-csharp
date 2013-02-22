@@ -31,6 +31,7 @@ namespace InstantBuySample
 			HttpRequest request = context.Request;
 			HttpResponse response = context.Response;
 
+      //Read the Json defining total price and currency
 			StreamReader streamReader = new StreamReader(request.InputStream);
 
 			String input;
@@ -41,6 +42,7 @@ namespace InstantBuySample
 			}
 			Request req = JsonConvert.DeserializeObject<Request>(json);
 
+      //Create a Masked Wallet body
       WalletBody mwb = new WalletBody.MaskedWalletBuilder()
           .ClientId (Config.getOauthClientId())
           .MerchantName(Config.getMerchantName())
@@ -50,11 +52,16 @@ namespace InstantBuySample
           .Ship (new Ship())
           .Build ();
 
+      //Create the request object
 			JwtRequest mwr = new JwtRequest(JwtRequest.MASKED_WALLET, Config.getMerchantId(), mwb);
-			mwr.exp = Convert.ToInt64(DateTime.Now.Subtract(new DateTime(1970,1,1,0,0,0)).TotalSeconds) + 60000L;
+
+			//Set the expiration time - not necessary but a useful example
+      mwr.exp = Convert.ToInt64(DateTime.Now.Subtract(new DateTime(1970,1,1,0,0,0)).TotalSeconds) + 60000L;
 			
+      //Convert the JwtRequest object to a string
 			String mwrJwt = JsonWebToken.Encode(mwr, Config.getMerchantSecret(), JwtHashAlgorithm.HS256); 
-      Console.WriteLine(mwrJwt);
+
+      //Respond with the Jwt
 			response.Write(mwrJwt);
 		}
 	}
