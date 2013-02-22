@@ -14,22 +14,29 @@ namespace InstantBuyLibrary
    * 
    * Generating the objects are handled by the various builders.
    */
-	public class WalletBody
-	{
+  public class WalletBody
+  {
     //Success and failure Enumeration for Transaction Status Notification
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum Status {
-      SUCCESS, FAILURE
+    public enum Status
+    {
+      SUCCESS,
+      FAILURE
     }
     
     //Enumeration to define the failure reason
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum Reason {
-      BAD_CVC, BAD_CARD, DECLINED, OTHER
+    public enum Reason
+    {
+      BAD_CVC,
+      BAD_CARD,
+      DECLINED,
+      OTHER
     }
 
     //Abstract generic builder base class
-    public abstract class Builder<T>{
+    public abstract class Builder<T>
+    {
       public String googleTransactionId = null;
       public String merchantTransactionId = null;
       public String clientId = null;
@@ -37,39 +44,39 @@ namespace InstantBuyLibrary
       public String origin = null;
       public String email = null;
 
-      public abstract T Self();
+      public abstract T Self ();
 
-      public T GoogleTransactionId(String googleTransactionId)
+      public T GoogleTransactionId (String googleTransactionId)
       {
         this.googleTransactionId = googleTransactionId;
         return Self ();
       }
 
-      public T MerchantTransactionId(String merchantTransactionId)
+      public T MerchantTransactionId (String merchantTransactionId)
       {
         this.merchantTransactionId = merchantTransactionId;
         return Self ();
       }
 
-      public T ClientId(String clientId)
+      public T ClientId (String clientId)
       {
         this.clientId = clientId;
         return Self ();
       }
 
-      public T MerchantName(String merchantName)
+      public T MerchantName (String merchantName)
       {
         this.merchantName = merchantName;
         return Self ();
       }
 
-      public T Origin(String origin)
+      public T Origin (String origin)
       {
         this.origin = origin;
         return Self ();
       }
 
-      public T Email(String email)
+      public T Email (String email)
       {
         this.email = email;
         return Self ();
@@ -80,7 +87,7 @@ namespace InstantBuyLibrary
     /**
      * Builder to generate a MaskedWalletRequest
      */
-    public class MaskedWalletBuilder : Builder<MaskedWalletBuilder> 
+    public class MaskedWalletBuilder : Builder<MaskedWalletBuilder>
     {
       public Pay pay = null;
       public Ship ship = null;
@@ -91,19 +98,19 @@ namespace InstantBuyLibrary
         return this;
       }
 
-      public MaskedWalletBuilder Pay(Pay pay)
+      public MaskedWalletBuilder Pay (Pay pay)
       {
         this.pay = pay;
         return this;
       }
       
-      public MaskedWalletBuilder Ship(Ship ship)
+      public MaskedWalletBuilder Ship (Ship ship)
       {
         this.ship = ship;
         return this;
       }
       
-      public MaskedWalletBuilder PhoneNumberRequired(Boolean phoneNumberRequired)
+      public MaskedWalletBuilder PhoneNumberRequired (Boolean phoneNumberRequired)
       {
         this.phoneNumberRequired = phoneNumberRequired;
         return this;
@@ -111,14 +118,14 @@ namespace InstantBuyLibrary
 
       public WalletBody Build ()
       {
-        return new WalletBody(this);
+        return new WalletBody (this);
       }
     }
 
     /**
      * Builder to generate a FullWalletRequest
      */
-    public class FullWalletBuilder : Builder<FullWalletBuilder> 
+    public class FullWalletBuilder : Builder<FullWalletBuilder>
     {
       public Cart cart = null;
 
@@ -127,7 +134,7 @@ namespace InstantBuyLibrary
         return this;
       }
 
-      public FullWalletBuilder Cart(Cart cart)
+      public FullWalletBuilder Cart (Cart cart)
       {
         this.cart = cart;
         return this;
@@ -135,10 +142,9 @@ namespace InstantBuyLibrary
 
       public WalletBody Build ()
       {
-        return new WalletBody(this);
+        return new WalletBody (this);
       }
     }
-
 
     public class TransactionStatusNotificationBuilder :Builder<TransactionStatusNotificationBuilder>
     {
@@ -152,19 +158,19 @@ namespace InstantBuyLibrary
         return this;
       }
 
-      public TransactionStatusNotificationBuilder Status(Status status)
+      public TransactionStatusNotificationBuilder Status (Status status)
       {
         this.status = status;
         return this;
       }
 
-      public TransactionStatusNotificationBuilder Reason(Reason reason)
+      public TransactionStatusNotificationBuilder Reason (Reason reason)
       {
         this.reason = reason;
         return this;
       }
 
-      public TransactionStatusNotificationBuilder DetailedReason(String detailedReason)
+      public TransactionStatusNotificationBuilder DetailedReason (String detailedReason)
       {
         this.detailedReason = detailedReason;
         return this;
@@ -172,28 +178,41 @@ namespace InstantBuyLibrary
 
       public WalletBody Build ()
       {
-        return new WalletBody(this);
+        return new WalletBody (this);
       }
     }
 
     public String googleTransactionId { get; set; }
+
     public String merchantTransactionId { get; set; }
+
     public String clientId { get; set; }
+
     public String merchantName { get; set; }
+
     public String origin { get; set; }
+
     public String email { get; set; }
+
     public Cart cart { get; set; }
+
     public Status? status { get; set; }
+
     public Reason? reason { get; set; }
+
     public String detailedReason { get; set; }
+
     public Pay pay { get; set; }
+
     public Ship ship { get; set; }
+
     public Boolean phoneNumberRequired { get; set; }
 
     public WalletBody ()
     {
     }
-		private WalletBody(MaskedWalletBuilder builder) 
+
+    private WalletBody (MaskedWalletBuilder builder)
     {
       this.phoneNumberRequired = builder.phoneNumberRequired;
       this.pay = builder.pay;
@@ -204,9 +223,9 @@ namespace InstantBuyLibrary
       this.merchantName = builder.merchantName;
       this.origin = builder.origin;
       this.email = builder.email;
-		}
+    }
 
-    private WalletBody(FullWalletBuilder builder) 
+    private WalletBody (FullWalletBuilder builder)
     {
       this.googleTransactionId = builder.googleTransactionId;
       this.merchantTransactionId = builder.merchantTransactionId;
@@ -217,7 +236,7 @@ namespace InstantBuyLibrary
       this.cart = builder.cart;
     }
 
-    private WalletBody(TransactionStatusNotificationBuilder builder) 
+    private WalletBody (TransactionStatusNotificationBuilder builder)
     {
       this.googleTransactionId = builder.googleTransactionId;
       this.merchantTransactionId = builder.merchantTransactionId;
@@ -229,6 +248,6 @@ namespace InstantBuyLibrary
       this.status = builder.status;
       this.detailedReason = builder.detailedReason;
     }
-	}
+  }
 }
 

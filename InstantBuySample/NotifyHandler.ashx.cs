@@ -11,8 +11,9 @@ namespace InstantBuySample
 {
   public class NotifyHandler : System.Web.IHttpHandler
   {
-		
-    public class Request {
+    
+    public class Request
+    {
       public String jwt;
     }
 
@@ -21,7 +22,7 @@ namespace InstantBuySample
         return false;
       }
     }
-		
+    
     public virtual void ProcessRequest (HttpContext context)
     {
       HttpRequest request = context.Request;
@@ -39,16 +40,16 @@ namespace InstantBuySample
 
       //Convert Full Wallet Response Jwt to Full Wallet Response object
       Request req = JsonConvert.DeserializeObject<Request> (json);
-      String jsonResponse = JsonWebToken.Decode (req.jwt, Config.getMerchantSecret(), false);
-      JwtResponse jwtResponse = JsonConvert.DeserializeObject<JwtResponse>(jsonResponse); 
+      String jsonResponse = JsonWebToken.Decode (req.jwt, Config.getMerchantSecret (), false);
+      JwtResponse jwtResponse = JsonConvert.DeserializeObject<JwtResponse> (jsonResponse); 
 
       //Create Transaction Status Notification body
-      WalletBody tsb = new WalletBody.TransactionStatusNotificationBuilder()
-          .GoogleTransactionId(jwtResponse.response.googleTransactionId)
-          .ClientId (Config.getOauthClientId())
-          .MerchantName(Config.getMerchantName())
-          .Origin(Config.getOrigin (request))
-          .Status(WalletBody.Status.SUCCESS)
+      WalletBody tsb = new WalletBody.TransactionStatusNotificationBuilder ()
+          .GoogleTransactionId (jwtResponse.response.googleTransactionId)
+          .ClientId (Config.getOauthClientId ())
+          .MerchantName (Config.getMerchantName ())
+          .Origin (Config.getOrigin (request))
+          .Status (WalletBody.Status.SUCCESS)
           .Build ();
 
       //Create Transaction Status Notification object
@@ -57,7 +58,7 @@ namespace InstantBuySample
       tsn.exp = Convert.ToInt64 (DateTime.Now.Subtract (new DateTime (1970, 1, 1, 0, 0, 0)).TotalSeconds) + 60000L;
 
       //Convert the JwtRequest object to a string
-      String mwrJwt = JsonWebToken.Encode (tsn, Config.getMerchantSecret(), JwtHashAlgorithm.HS256); 
+      String mwrJwt = JsonWebToken.Encode (tsn, Config.getMerchantSecret (), JwtHashAlgorithm.HS256); 
       
       response.Write (mwrJwt);
     }
