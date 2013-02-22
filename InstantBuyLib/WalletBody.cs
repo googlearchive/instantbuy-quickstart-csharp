@@ -35,7 +35,6 @@ namespace InstantBuyLibrary
       public String merchantName = null;
       public String origin = null;
       public String email = null;
-      public SigningCert signingCertificateFingerprint = null;
 
       public abstract T Self();
 
@@ -75,11 +74,6 @@ namespace InstantBuyLibrary
         return Self ();
       }
 
-      public T SigningCertificateFingerprint(SigningCert signingCertificateFingerprint)
-      {
-        this.signingCertificateFingerprint = signingCertificateFingerprint;
-        return Self ();
-      }
     }
 
     /**
@@ -187,7 +181,6 @@ namespace InstantBuyLibrary
     public String merchantName { get; set; }
     public String origin { get; set; }
     public String email { get; set; }
-    public SigningCert signingCertificateFingerprint { get; set; }
     public Cart cart { get; set; }
     public Status? status { get; set; }
     public Reason? reason { get; set; }
@@ -210,7 +203,6 @@ namespace InstantBuyLibrary
       this.merchantName = builder.merchantName;
       this.origin = builder.origin;
       this.email = builder.email;
-      this.signingCertificateFingerprint = builder.signingCertificateFingerprint;
 		}
 
     private WalletBody(FullWalletBuilder builder) 
@@ -221,7 +213,6 @@ namespace InstantBuyLibrary
       this.merchantName = builder.merchantName;
       this.origin = builder.origin;
       this.email = builder.email;
-      this.signingCertificateFingerprint = builder.signingCertificateFingerprint;
       this.cart = builder.cart;
     }
 
@@ -233,7 +224,6 @@ namespace InstantBuyLibrary
       this.merchantName = builder.merchantName;
       this.origin = builder.origin;
       this.email = builder.email;
-      this.signingCertificateFingerprint = builder.signingCertificateFingerprint;
       this.reason = builder.reason;
       this.status = builder.status;
       this.detailedReason = builder.detailedReason;

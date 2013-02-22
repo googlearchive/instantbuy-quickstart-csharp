@@ -45,7 +45,6 @@
     <Compile Include="Cart.cs" />
     <Compile Include="LineItem.cs" />
     <Compile Include="JwtResponse.cs" />
-    <Compile Include="SigningCert.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
