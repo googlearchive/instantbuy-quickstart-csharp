@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantBuySample", "InstantBuySample\InstantBuySample.csproj", "{41F7BD7B-40F8-4DF4-B6AF-8960CA9AF336}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantBuyLibrary", "InstantBuyLib\InstantBuyLibrary.csproj", "{C01290D0-D738-4AF7-BB61-8D99570A4A48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT", "JWT\JWT.csproj", "{A80B51B8-DDF6-4026-98A4-B59653E50B38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41F7BD7B-40F8-4DF4-B6AF-8960CA9AF336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41F7BD7B-40F8-4DF4-B6AF-8960CA9AF336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41F7BD7B-40F8-4DF4-B6AF-8960CA9AF336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41F7BD7B-40F8-4DF4-B6AF-8960CA9AF336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A80B51B8-DDF6-4026-98A4-B59653E50B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A80B51B8-DDF6-4026-98A4-B59653E50B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A80B51B8-DDF6-4026-98A4-B59653E50B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A80B51B8-DDF6-4026-98A4-B59653E50B38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01290D0-D738-4AF7-BB61-8D99570A4A48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01290D0-D738-4AF7-BB61-8D99570A4A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01290D0-D738-4AF7-BB61-8D99570A4A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01290D0-D738-4AF7-BB61-8D99570A4A48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = InstantBuySample\InstantBuySample.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $2
+		$2.FileWidth = 120
+		$2.TabWidth = 2
+		$2.IndentWidth = 2
+		$2.inheritsSet = VisualStudio
+		$2.inheritsScope = text/plain
+		$2.scope = text/html
+	EndGlobalSection
+EndGlobal
