@@ -4,13 +4,16 @@ using System.Configuration;
 
 namespace InstantBuySample
 {
+  /**
+   * This class handles the configuration elements for the Jwt handlers.
+   */
   public class Config
   {
     public static Configuration webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration(null);
     private Config ()
     {
     }
-
+    //Returns the protocol://domain:port of the server
     public static String getOrigin (HttpRequest request)
     {
       String origin = string.Format("{0}://{1}{2}",
@@ -20,25 +23,22 @@ namespace InstantBuySample
                                     ? string.Empty
                                     : ":" + request.Url.Port);
 
-      //return webConfig.AppSettings.Settings["origin"].Value;
       return origin;
     }
 
+    //Returns the merchant name
     public static String getMerchantName ()
     {
       return webConfig.AppSettings.Settings["merchant-name"].Value;
     }
 
+    //Returns the OauthClientId
     public static String getOauthClientId ()
     {
       return webConfig.AppSettings.Settings["oauth-client-id"].Value;
     }
 
-    public static String getFingerPrint ()
-    {
-      return webConfig.AppSettings.Settings["fingerprint"].Value;
-    }
-
+    //Returns the InstantBuy MerchantId
     public static String getMerchantId ()
     {
       if(webConfig.AppSettings.Settings["environment"].Value.Equals("SANDBOX"))
@@ -49,6 +49,7 @@ namespace InstantBuySample
         return null;
     }
 
+    //Returns the InstantBy MerchantSecret
     public static String getMerchantSecret ()
     {
       if(webConfig.AppSettings.Settings["environment"].Value.Equals("SANDBOX"))

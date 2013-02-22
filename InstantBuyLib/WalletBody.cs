@@ -28,6 +28,7 @@ namespace InstantBuyLibrary
       BAD_CVC, BAD_CARD, DECLINED, OTHER
     }
 
+    //Abstract generic builder base class
     public abstract class Builder<T>{
       public String googleTransactionId = null;
       public String merchantTransactionId = null;

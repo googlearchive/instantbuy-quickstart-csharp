@@ -5,6 +5,7 @@
     <script type="text/javascript"
       src="https://wallet-web.sandbox.google.com/online/v2/merchant/merchant.js"></script>
 		<script>
+    var OauthClientId = "Client Id";
     
     //Information for Masked Wallet request
     var MaskedWalletJson = {
@@ -47,7 +48,7 @@
     
     //Try to authorize for preauth
     google.wallet.online.authorize({
-      "clientId": "Enter your ClientId",
+      "clientId": OauthClientId,
       "callback": function(tokenObj){
         console.log(tokenObj);
       },
@@ -148,6 +149,7 @@
     
     //Initializes the button actions
     function initApp(){
+      //using JQuery for Ajax posts
       document.getElementById("masked").addEventListener("click",
         function() {
           $.post("masked-wallet", JSON.stringify(MaskedWalletJson), handleMaskedWalletJwt);
