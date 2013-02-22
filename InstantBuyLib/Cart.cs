@@ -26,7 +26,7 @@ namespace InstantBuyLibrary
 				lineItems = new List<LineItem>();
 			}
 			lineItems.Add(item);
-			UpdateTotal();
+			UpdateTotal(); 
 		}
 
 		private void UpdateTotal() 

@@ -48,6 +48,7 @@ namespace InstantBuyLibrary
 			this.quantity = quantity;
 			this.totalPrice = (quantity * Convert.ToDouble(unitPrice)).ToString();
 		}
+
 	}
 }
 

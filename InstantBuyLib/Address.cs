@@ -20,6 +20,8 @@ namespace InstantBuyLibrary
 		public String phoneNumber { get; set; }
 		public Boolean postBox { get; set; }
 		public String companyName { get; set; }
+
+    public Address(){}
 	}
 }
 
