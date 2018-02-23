@@ -1,5 +1,7 @@
-C# Quick start Sample for Instant Buy API
-Copyright (c) 2013 Google Inc.
+# Project status
+![status: inactive](https://img.shields.io/badge/status-inactive-red.svg)
+
+This project is no longer actively maintained, and remains here as an archive of this work.
 
 ## Quick Start sample for Instant Buy API
 This sample shows the minimal integration for Google InstantBuy in C#.
